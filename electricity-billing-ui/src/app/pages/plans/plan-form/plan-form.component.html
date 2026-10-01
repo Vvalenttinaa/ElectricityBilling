@@ -1,0 +1,230 @@
+<div class="container">
+  <div class="page-header">
+    <div>
+      <h1>
+        {{
+          isEditMode
+            ? ('PLAN_FORM.EDIT_TITLE' | translate)
+            : ('PLAN_FORM.ADD_TITLE' | translate)
+        }}
+      </h1>
+
+      <p>
+        {{ 'PLAN_FORM.SUBTITLE' | translate }}
+      </p>
+    </div>
+  </div>
+
+  @if (errorMessage) {
+    <p class="error">
+      {{ errorMessage }}
+    </p>
+  }
+
+  @if (loading && isEditMode) {
+    <p>{{ 'COMMON.LOADING' | translate }}</p>
+  }
+
+  <form [formGroup]="planForm" (ngSubmit)="save()">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          {{ 'PLAN_FORM.GENERAL_INFORMATION' | translate }}
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="form-grid">
+          <mat-form-field appearance="outline">
+            <mat-label>
+              {{ 'PLAN_FORM.NAME' | translate }}
+            </mat-label>
+
+            <input matInput type="text" formControlName="name" />
+
+            @if (
+              planForm.get("name")?.touched &&
+              planForm.get("name")?.invalid
+            ) {
+              <mat-error>
+                {{ 'PLAN_FORM.NAME_REQUIRED' | translate }}
+              </mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>
+              {{ 'PLAN_FORM.DISCOUNT' | translate }}
+            </mat-label>
+
+            <input
+              matInput
+              type="number"
+              min="0"
+              max="100"
+              step="0.01"
+              formControlName="discount"
+            />
+
+            @if (
+              planForm.get("discount")?.touched &&
+              planForm.get("discount")?.invalid
+            ) {
+              <mat-error>
+                {{ 'PLAN_FORM.DISCOUNT_ERROR' | translate }}
+              </mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>
+            {{ 'PLAN_FORM.DESCRIPTION' | translate }}
+          </mat-label>
+
+          <textarea
+            matInput
+            rows="4"
+            formControlName="description"
+          ></textarea>
+        </mat-form-field>
+
+        <mat-checkbox formControlName="isActive">
+          {{ 'COMMON.ACTIVE' | translate }}
+        </mat-checkbox>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-divider></mat-divider>
+
+    <div class="tiers-header">
+      <div>
+        <h2>{{ 'PLAN_FORM.PRICING_TIERS' | translate }}</h2>
+
+        <p>
+          {{ 'PLAN_FORM.PRICING_TIERS_SUBTITLE' | translate }}
+        </p>
+      </div>
+
+      <button
+        mat-raised-button
+        type="button"
+        (click)="addPricingTier()"
+      >
+        {{ 'PLAN_FORM.ADD_TIER' | translate }}
+      </button>
+    </div>
+
+    <div formArrayName="pricingTiers" class="tiers">
+      @for (tier of pricingTiers.controls; track tier; let i = $index) {
+        <mat-card class="tier-card" [formGroupName]="i">
+          <mat-card-header>
+            <mat-card-title>
+              {{ 'PLAN_FORM.TIER' | translate }} {{ i + 1 }}
+            </mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+            <div class="tier-grid">
+              <mat-form-field appearance="outline">
+                <mat-label>
+                  {{ 'PLAN_FORM.THRESHOLD' | translate }}
+                </mat-label>
+
+                <input
+                  matInput
+                  type="number"
+                  min="0"
+                  formControlName="threshold"
+                />
+
+                <mat-hint>
+                  {{ 'PLAN_FORM.THRESHOLD_HINT' | translate }}
+                </mat-hint>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>
+                  {{ 'PLAN_FORM.PRICE_PER_KWH' | translate }}
+                </mat-label>
+
+                <input
+                  matInput
+                  type="number"
+                  min="0"
+                  step="0.0001"
+                  formControlName="pricePerKwh"
+                />
+
+                @if (
+                  tier.get("pricePerKwh")?.touched &&
+                  tier.get("pricePerKwh")?.invalid
+                ) {
+                  <mat-error>
+                    {{ 'PLAN_FORM.PRICE_REQUIRED' | translate }}
+                  </mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>
+                  {{ 'PLAN_FORM.SORT_ORDER' | translate }}
+                </mat-label>
+
+                <input
+                  matInput
+                  type="number"
+                  min="1"
+                  step="1"
+                  formControlName="sortOrder"
+                />
+
+                @if (
+                  tier.get("sortOrder")?.touched &&
+                  tier.get("sortOrder")?.invalid
+                ) {
+                  <mat-error>
+                    {{ 'PLAN_FORM.SORT_ORDER_ERROR' | translate }}
+                  </mat-error>
+                }
+              </mat-form-field>
+            </div>
+          </mat-card-content>
+
+          <mat-card-actions align="end">
+            <button
+              mat-button
+              type="button"
+              (click)="removePricingTier(i)"
+              [disabled]="pricingTiers.length <= 1"
+            >
+              {{ 'PLAN_FORM.REMOVE_TIER' | translate }}
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      }
+    </div>
+
+    <div class="actions">
+      <button
+        mat-button
+        type="button"
+        (click)="cancel()"
+      >
+        {{ 'COMMON.CANCEL' | translate }}
+      </button>
+
+      <button
+        mat-raised-button
+        type="submit"
+        [disabled]="loading"
+      >
+        {{
+          isEditMode
+            ? ('PLAN_FORM.SAVE_CHANGES' | translate)
+            : ('PLAN_FORM.CREATE_PLAN' | translate)
+        }}
+      </button>
+    </div>
+  </form>
+</div>

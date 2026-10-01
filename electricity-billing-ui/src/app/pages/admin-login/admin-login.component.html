@@ -1,0 +1,77 @@
+<div class="login-page">
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>
+        {{ 'LOGIN_PAGE.TITLE' | translate }}
+      </mat-card-title>
+
+      <mat-card-subtitle>
+        {{ 'LOGIN_PAGE.SUBTITLE' | translate }}
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form #loginForm="ngForm" (ngSubmit)="login()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>
+            {{ 'LOGIN_PAGE.USERNAME' | translate }}
+          </mat-label>
+
+          <input
+            matInput
+            type="text"
+            name="username"
+            [(ngModel)]="username"
+            required
+          />
+
+          <mat-icon matPrefix>person</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>
+            {{ 'LOGIN_PAGE.PASSWORD' | translate }}
+          </mat-label>
+
+          <input
+            matInput
+            [type]="hidePassword ? 'password' : 'text'"
+            name="password"
+            [(ngModel)]="password"
+            required
+          />
+
+          <mat-icon matPrefix>lock</mat-icon>
+
+          <button
+            mat-icon-button
+            matSuffix
+            type="button"
+            (click)="hidePassword = !hidePassword"
+          >
+            <mat-icon>
+              {{ hidePassword ? "visibility" : "visibility_off" }}
+            </mat-icon>
+          </button>
+        </mat-form-field>
+
+        <div class="error-message" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+
+        <button
+          mat-flat-button
+          type="submit"
+          class="login-button"
+          [disabled]="loginForm.invalid || loading"
+        >
+          <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+
+          <span *ngIf="!loading">
+            {{ 'LOGIN_PAGE.LOGIN' | translate }}
+          </span>
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

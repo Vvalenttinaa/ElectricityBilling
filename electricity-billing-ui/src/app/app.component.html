@@ -1,0 +1,77 @@
+<mat-toolbar class="navbar">
+  <span class="app-title"> Electricity Billing </span>
+
+  <nav class="nav-links">
+    <!-- PUBLIC -->
+
+    <a mat-button routerLink="/recommendation" routerLinkActive="active-link">
+      {{ 'NAV.RECOMMENDATION' | translate }}
+    </a>
+
+    <!-- ADMIN ONLY -->
+
+    @if (authService.isAdmin()) {
+      <a mat-button routerLink="/plans" routerLinkActive="active-link">
+        {{ 'NAV.PLANS' | translate }}
+      </a>
+
+      <a mat-button routerLink="/tax-groups" routerLinkActive="active-link">
+        {{ 'NAV.TAX_GROUPS' | translate }}
+      </a>
+
+      <a
+        mat-button
+        routerLink="/admin/analytics"
+        routerLinkActive="active-link"
+      >
+        {{ 'NAV.ANALYTICS' | translate }}
+      </a>
+
+      <a mat-button routerLink="/admin" routerLinkActive="active-link">
+        Admin
+      </a>
+    }
+  </nav>
+
+  <span class="spacer"></span>
+
+  <!-- LOGIN / LOGOUT -->
+
+  @if (authService.isAdmin()) {
+    <button mat-button type="button" (click)="logout()">Logout</button>
+  } @else {
+    <a mat-button routerLink="/admin-login" routerLinkActive="active-link">
+      {{ 'LOGIN_PAGE.LOGIN' | translate }}
+    </a>
+  }
+
+  <!-- THEME -->
+
+  <button
+    mat-icon-button
+    type="button"
+    (click)="toggleTheme()"
+    [attr.aria-label]="
+      themeService.isDarkMode()
+        ? 'Switch to light theme'
+        : 'Switch to dark theme'
+    "
+  >
+    <mat-icon>
+      @if (themeService.isDarkMode()) {
+        light_mode
+      } @else {
+        dark_mode
+      }
+    </mat-icon>
+  </button>
+  <button mat-button (click)="changeLanguage('sr')">
+  SR
+</button>
+
+<button mat-button (click)="changeLanguage('en')">
+  EN
+</button>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

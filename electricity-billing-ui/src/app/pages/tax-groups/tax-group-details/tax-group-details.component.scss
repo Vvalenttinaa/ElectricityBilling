@@ -1,0 +1,48 @@
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.actions a,
+.actions button {
+  padding: 10px 16px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  background-color: #eee;
+  color: black;
+}
+
+.details-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.detail-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.error {
+  color: red;
+}

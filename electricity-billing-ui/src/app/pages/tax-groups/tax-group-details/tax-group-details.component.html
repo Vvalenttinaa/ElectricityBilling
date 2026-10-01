@@ -1,0 +1,85 @@
+<div class="container">
+  @if (loading) {
+    <p>{{ 'TAX_GROUP_DETAILS.LOADING' | translate }}</p>
+  }
+
+  @if (errorMessage) {
+    <p class="error">
+      {{ errorMessage }}
+    </p>
+  }
+
+  @if (!loading && taxGroup) {
+    <div class="header">
+      <div>
+        <h1>
+          {{ taxGroup.name }}
+        </h1>
+
+        <span class="status">
+          {{
+            taxGroup.isActive
+              ? ('COMMON.ACTIVE' | translate)
+              : ('COMMON.INACTIVE' | translate)
+          }}
+        </span>
+      </div>
+
+      <div class="actions">
+        <a [routerLink]="['/tax-groups', taxGroup.id, 'edit']">
+          {{ 'COMMON.EDIT' | translate }}
+        </a>
+
+        <button type="button" (click)="deleteTaxGroup()">
+          {{ 'COMMON.DELETE' | translate }}
+        </button>
+      </div>
+    </div>
+
+    <div class="details-card">
+      <div class="detail-row">
+        <strong>
+          {{ 'TAX_GROUP_DETAILS.DESCRIPTION' | translate }}
+        </strong>
+
+        <span>
+          {{ taxGroup.description || "-" }}
+        </span>
+      </div>
+
+      <div class="detail-row">
+        <strong>
+          {{ 'TAX_GROUP_DETAILS.VAT' | translate }}
+        </strong>
+
+        <span> {{ taxGroup.vat }}% </span>
+      </div>
+
+      <div class="detail-row">
+        <strong>
+          {{ 'TAX_GROUP_DETAILS.ECO_TAX' | translate }}
+        </strong>
+
+        <span> {{ taxGroup.ecoTax }}% </span>
+      </div>
+
+      <div class="detail-row">
+        <strong>
+          {{ 'TAX_GROUP_DETAILS.STATUS' | translate }}
+        </strong>
+
+        <span>
+          {{
+            taxGroup.isActive
+              ? ('COMMON.ACTIVE' | translate)
+              : ('COMMON.INACTIVE' | translate)
+          }}
+        </span>
+      </div>
+    </div>
+
+    <button type="button" (click)="goBack()">
+      {{ 'TAX_GROUP_DETAILS.BACK_TO_TAX_GROUPS' | translate }}
+    </button>
+  }
+</div>

@@ -1,0 +1,175 @@
+{
+  "NAV": {
+    "HOME": "Početna",
+    "RECOMMENDATION": "Preporuka",
+    "PLANS": "Planovi",
+    "TAX_GROUPS": "Poreske grupe",
+    "ANALYTICS": "Statistika",
+    "LOGIN": "Prijava",
+    "LOGOUT": "Odjava"
+  },
+
+  "COMMON": {
+    "SAVE": "Sačuvaj",
+    "CANCEL": "Otkaži",
+    "EDIT": "Izmijeni",
+    "DELETE": "Obriši",
+    "BACK": "Nazad",
+    "LOADING": "Učitavanje...",
+    "ACTIVE": "Aktivna",
+    "INACTIVE": "Neaktivna",
+    "VIEW": "Pregled"
+  },
+
+  "TAX_GROUP_DETAILS": {
+    "LOADING": "Učitavanje poreske grupe...",
+    "DESCRIPTION": "Opis",
+    "VAT": "PDV",
+    "ECO_TAX": "Eko taksa",
+    "STATUS": "Status",
+    "BACK_TO_TAX_GROUPS": "Nazad na poreske grupe"
+  },
+
+  "TAX_GROUP_FORM": {
+    "EDIT_TITLE": "Izmijeni poresku grupu",
+    "ADD_TITLE": "Dodaj poresku grupu",
+    "SUBTITLE": "Podesite poreze koji se koriste u obračunu troškova električne energije.",
+    "INFORMATION": "Podaci o poreskoj grupi",
+    "NAME": "Naziv",
+    "DESCRIPTION": "Opis",
+    "VAT": "PDV (%)",
+    "ECO_TAX": "Eko taksa (%)",
+    "NAME_REQUIRED": "Naziv je obavezan.",
+    "VAT_ERROR": "PDV mora biti između 0 i 1.",
+    "ECO_TAX_ERROR": "Eko taksa mora biti između 0 i 1.",
+    "SAVE_CHANGES": "Sačuvaj izmjene",
+    "CREATE": "Kreiraj poresku grupu"
+  },
+  "RECOMMENDATION_PAGE": {
+    "TITLE": "Preporuka plana električne energije",
+    "SUBTITLE": "Unesite mjesečnu potrošnju i izaberite poresku grupu kako biste pronašli najpovoljniji plan električne energije.",
+    "CALCULATE_TITLE": "Izračunaj preporuku",
+    "MONTHLY_CONSUMPTION": "Mjesečna potrošnja",
+    "CONSUMPTION_ERROR": "Unesite ispravnu mjesečnu potrošnju.",
+    "TAX_GROUP": "Poreska grupa",
+    "TAX_GROUP_REQUIRED": "Poreska grupa je obavezna.",
+    "SEND_EMAIL": "Pošalji preporuku na moj email",
+    "EMAIL_ADDRESS": "Email adresa",
+    "EMAIL_REQUIRED": "Email adresa je obavezna.",
+    "EMAIL_INVALID": "Unesite ispravnu email adresu.",
+    "CALCULATING": "Izračunavanje...",
+    "FIND_BEST_PLAN": "Pronađi najbolji plan",
+    "RECOMMENDED_PLAN": "Preporučeni plan",
+    "RECOMMENDED_PLAN_SUBTITLE": "Najpovoljniji plan na osnovu unesene potrošnje.",
+    "RECOMMENDED": "Preporučeno",
+    "BEST_COST_TEXT": "Najbolji procijenjeni mjesečni trošak za vašu potrošnju.",
+    "BAM_PER_MONTH": "BAM / mjesečno",
+    "PLAN_COMPARISON": "Poređenje planova",
+    "PLAN_COMPARISON_SUBTITLE": "Uporedite procijenjeni trošak svih dostupnih planova.",
+    "PLAN": "Plan",
+    "BASE_COST": "Osnovni trošak",
+    "DISCOUNT": "Popust",
+    "VAT": "PDV",
+    "ECO_TAX": "Eko taksa",
+    "TOTAL": "Ukupno"
+  },
+
+  "PLAN_FORM": {
+    "EDIT_TITLE": "Izmijeni plan",
+    "ADD_TITLE": "Dodaj plan",
+    "SUBTITLE": "Podesite plan električne energije i njegove cjenovne nivoe.",
+    "GENERAL_INFORMATION": "Osnovne informacije",
+    "NAME": "Naziv",
+    "NAME_REQUIRED": "Naziv je obavezan.",
+    "DISCOUNT": "Popust (%)",
+    "DISCOUNT_ERROR": "Popust mora biti između 0 i 100.",
+    "DESCRIPTION": "Opis",
+    "PRICING_TIERS": "Cjenovni nivoi",
+    "PRICING_TIERS_SUBTITLE": "Definišite pragove potrošnje i cijenu po kWh.",
+    "ADD_TIER": "Dodaj nivo",
+    "TIER": "Nivo",
+    "THRESHOLD": "Prag",
+    "THRESHOLD_HINT": "Prazno polje znači da nema gornje granice.",
+    "PRICE_PER_KWH": "Cijena po kWh",
+    "PRICE_REQUIRED": "Potrebno je unijeti ispravnu cijenu.",
+    "SORT_ORDER": "Redoslijed",
+    "SORT_ORDER_ERROR": "Redoslijed mora biti najmanje 1.",
+    "REMOVE_TIER": "Ukloni nivo",
+    "SAVE_CHANGES": "Sačuvaj izmjene",
+    "CREATE_PLAN": "Kreiraj plan"
+  },
+  "PLAN_LIST": {
+    "TITLE": "Planovi električne energije",
+    "SUBTITLE": "Upravljajte planovima električne energije i cjenovnim nivoima.",
+    "ADD": "Dodaj plan",
+    "LOADING": "Učitavanje planova...",
+    "NO_DATA": "Nisu pronađeni planovi.",
+    "NAME": "Naziv",
+    "DESCRIPTION": "Opis",
+    "DISCOUNT": "Popust",
+    "STATUS": "Status",
+    "PRICING_TIERS": "Cjenovni nivoi",
+    "ACTIONS": "Akcije"
+  },
+
+  "TAX_GROUP_LIST": {
+    "TITLE": "Poreske grupe",
+    "SUBTITLE": "Upravljajte poreskim pravilima koja se koriste u obračunu troškova električne energije.",
+    "ADD": "Dodaj poresku grupu",
+    "LOADING": "Učitavanje poreskih grupa...",
+    "NO_DATA": "Nisu pronađene poreske grupe.",
+    "NAME": "Naziv",
+    "DESCRIPTION": "Opis",
+    "VAT": "PDV",
+    "ECO_TAX": "Eko taksa",
+    "STATUS": "Status",
+    "ACTIONS": "Akcije"
+  },
+
+  "PLAN": {
+    "TITLE": "Planovi",
+    "NAME": "Naziv plana",
+    "DESCRIPTION": "Opis",
+    "DISCOUNT": "Popust",
+    "PRICE_PER_KWH": "Cijena po kWh",
+    "ACTIVE": "Aktivan"
+  },
+
+  "RECOMMENDATION": {
+    "TITLE": "Pronađite najbolji plan električne energije",
+    "CONSUMPTION": "Mjesečna potrošnja (kWh)",
+    "TAX_GROUP": "Poreska grupa",
+    "EMAIL": "Email",
+    "SEND_EMAIL": "Pošalji preporuku putem emaila",
+    "CALCULATE": "Izračunaj preporuku",
+    "RECOMMENDED_PLAN": "Preporučeni plan",
+    "TOTAL_COST": "Ukupna cijena"
+  },
+
+  "LOGIN_PAGE": {
+  "TITLE": "Prijava administratora",
+  "SUBTITLE": "Sistem za obračun električne energije",
+  "USERNAME": "Korisničko ime",
+  "PASSWORD": "Lozinka",
+  "LOGIN": "Prijavi se"
+},
+
+  "DASHBOARD": {
+    "TITLE": "Analitička kontrolna tabla",
+    "SUBTITLE": "Pregled preporuka planova električne energije",
+    "LOADING": "Učitavanje analitike...",
+    "TOTAL_RECOMMENDATIONS": "Ukupan broj preporuka",
+    "AVERAGE_CONSUMPTION": "Prosječna potrošnja",
+    "AVERAGE_ESTIMATED_COST": "Prosječni procijenjeni trošak",
+    "NO_DATA": "Podaci o preporukama još nisu dostupni.",
+    "PLAN_SELECTION_TRENDS": "Trendovi izbora planova",
+    "PLAN_SELECTION_TRENDS_SUBTITLE": "Broj puta kada je svaki plan preporučen",
+    "PLAN_STATISTICS": "Statistika planova",
+    "PLAN": "Plan",
+    "RECOMMENDATIONS": "Preporuke",
+    "PERCENTAGE": "Procenat",
+    "PLANS": "Planovi",
+    "NUMBER_OF_RECOMMENDATIONS": "Broj preporuka",
+    "LOAD_ERROR": "Podaci analitike nisu mogli biti učitani."
+  }
+}

@@ -1,0 +1,106 @@
+<div class="container">
+  @if (loading) {
+    <p>Loading plan...</p>
+  }
+
+  @if (errorMessage) {
+    <p class="error">
+      {{ errorMessage }}
+    </p>
+  }
+
+  @if (!loading && plan) {
+    <div class="header">
+      <div>
+        <h1>{{ plan.name }}</h1>
+
+        <span class="status" [class.inactive]="!plan.isActive">
+          {{ plan.isActive ? "Active" : "Inactive" }}
+        </span>
+      </div>
+
+      <div class="header-actions">
+        <a [routerLink]="['/plans', plan.id, 'edit']" class="edit-button">
+          Edit
+        </a>
+
+        <button type="button" class="delete-button" (click)="deletePlan()">
+          Delete
+        </button>
+      </div>
+    </div>
+
+    <div class="details-card">
+      <div class="detail-row">
+        <span class="label">Description</span>
+
+        <span>
+          {{ plan.description || "-" }}
+        </span>
+      </div>
+
+      <div class="detail-row">
+        <span class="label">Discount</span>
+
+        <span> {{ plan.discount }}% </span>
+      </div>
+
+      <div class="detail-row">
+        <span class="label">Number of pricing tiers</span>
+
+        <span>
+          {{ plan.pricingTiers.length }}
+        </span>
+      </div>
+    </div>
+
+    <h2>Pricing Tiers</h2>
+
+    @if (plan.pricingTiers.length === 0) {
+      <p>No pricing tiers.</p>
+    } @else {
+      <table>
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th>Threshold</th>
+            <th>Price per kWh</th>
+            <th>Sort Order</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (tier of plan.pricingTiers; track tier.id; let i = $index) {
+            <tr>
+              <td>
+                {{ i + 1 }}
+              </td>
+
+              <td>
+                @if (tier.threshold === null) {
+                  No upper limit
+                } @else {
+                  {{ tier.threshold }} kWh
+                }
+              </td>
+
+              <td>
+                {{ tier.pricePerKwh }}
+              </td>
+
+              <td>
+                {{ tier.sortOrder }}
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+
+    <div class="bottom-actions">
+      <button type="button" class="back-button" (click)="goBack()">
+        Back to Plans
+      </button>
+    </div>
+  }
+</div>

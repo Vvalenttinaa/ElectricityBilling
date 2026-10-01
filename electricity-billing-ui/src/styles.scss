@@ -1,0 +1,361 @@
+// ======================================================
+// ANGULAR MATERIAL THEMING
+// ======================================================
+
+@use "@angular/material" as mat;
+
+// Angular Material core styles.
+// Ovo treba uključiti samo jednom u cijeloj aplikaciji.
+@include mat.core();
+
+// ======================================================
+// COLOR PALETTES
+// ======================================================
+
+$electricity-billing-ui-primary: mat.define-palette(mat.$indigo-palette);
+
+$electricity-billing-ui-accent: mat.define-palette(
+  mat.$pink-palette,
+  A200,
+  A100,
+  A400
+);
+
+$electricity-billing-ui-warn: mat.define-palette(mat.$red-palette);
+
+// ======================================================
+// LIGHT THEME
+// ======================================================
+
+$electricity-billing-ui-light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $electricity-billing-ui-primary,
+      accent: $electricity-billing-ui-accent,
+      warn: $electricity-billing-ui-warn,
+    ),
+
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+
+// Light theme je default.
+@include mat.all-component-themes($electricity-billing-ui-light-theme);
+
+// ======================================================
+// DARK THEME
+// ======================================================
+
+$electricity-billing-ui-dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $electricity-billing-ui-primary,
+      accent: $electricity-billing-ui-accent,
+      warn: $electricity-billing-ui-warn,
+    ),
+  )
+);
+
+// Kada ThemeService doda:
+//
+// body.classList.add('dark-theme')
+//
+// Angular Material automatski dobija dark colors.
+//
+// Koristimo samo colors jer su typography i density
+// već uključeni kroz light theme iznad.
+body.dark-theme {
+  @include mat.all-component-colors($electricity-billing-ui-dark-theme);
+
+  color-scheme: dark;
+}
+
+// ======================================================
+// APPLICATION COLORS
+// ======================================================
+
+:root {
+  --app-background: #f5f6f8;
+
+  --app-surface: #ffffff;
+
+  --app-surface-secondary: #f9fafb;
+
+  --app-text: #1f2937;
+
+  --app-secondary-text: #6b7280;
+
+  --app-border: #e5e7eb;
+
+  --app-hover: #f3f4f6;
+
+  --app-success-background: #e8f5e9;
+
+  --app-success-text: #2e7d32;
+
+  --app-error-background: #ffebee;
+
+  --app-error-text: #c62828;
+}
+
+body.dark-theme {
+  --app-background: #121212;
+
+  --app-surface: #1e1e1e;
+
+  --app-surface-secondary: #252525;
+
+  --app-text: #f5f5f5;
+
+  --app-secondary-text: #b0b0b0;
+
+  --app-border: #383838;
+
+  --app-hover: #2c2c2c;
+
+  --app-success-background: #183c20;
+
+  --app-success-text: #a5d6a7;
+
+  --app-error-background: #451a1a;
+
+  --app-error-text: #ef9a9a;
+}
+
+// ======================================================
+// GLOBAL
+// ======================================================
+
+html,
+body {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  background-color: var(--app-background);
+
+  color: var(--app-text);
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+// ======================================================
+// NAVBAR
+// ======================================================
+
+.navbar {
+  background-color: var(--app-surface) !important;
+
+  color: var(--app-text) !important;
+
+  border-bottom: 1px solid var(--app-border);
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+// ======================================================
+// MATERIAL CARDS
+// ======================================================
+
+.mat-mdc-card {
+  background-color: var(--app-surface);
+
+  color: var(--app-text);
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.mat-mdc-card-title {
+  color: var(--app-text);
+}
+
+.mat-mdc-card-subtitle {
+  color: var(--app-secondary-text);
+}
+
+// ======================================================
+// MATERIAL TABLE
+// ======================================================
+
+.mat-mdc-table {
+  background-color: var(--app-surface);
+
+  color: var(--app-text);
+}
+
+.mat-mdc-header-row {
+  background-color: var(--app-surface-secondary);
+}
+
+.mat-mdc-header-cell {
+  color: var(--app-text);
+
+  border-bottom-color: var(--app-border);
+}
+
+.mat-mdc-cell {
+  color: var(--app-text);
+
+  border-bottom-color: var(--app-border);
+}
+
+.mat-mdc-row:hover {
+  background-color: var(--app-hover);
+}
+
+// ======================================================
+// MATERIAL SELECT
+// ======================================================
+
+// Sam select field dobija boje iz Material dark theme-a.
+// Ovo samo dodatno usklađuje popup sa aplikacijom.
+
+body.dark-theme {
+  .mat-mdc-select-panel {
+    background-color: var(--app-surface) !important;
+  }
+
+  .mat-mdc-option {
+    color: var(--app-text) !important;
+  }
+
+  .mat-mdc-option:hover:not(.mdc-list-item--disabled) {
+    background-color: var(--app-hover) !important;
+  }
+
+  .mat-mdc-option.mdc-list-item--selected {
+    background-color: var(--app-surface-secondary) !important;
+  }
+}
+
+// ======================================================
+// CHECKBOX
+// ======================================================
+
+body.dark-theme {
+  .mat-mdc-checkbox label {
+    color: var(--app-text);
+  }
+}
+
+// ======================================================
+// FORM INPUTS
+// ======================================================
+
+body.dark-theme {
+  .mat-mdc-input-element {
+    color: var(--app-text) !important;
+  }
+
+  .mat-mdc-select-value {
+    color: var(--app-text) !important;
+  }
+
+  .mat-mdc-select-arrow {
+    color: var(--app-secondary-text);
+  }
+
+  input::placeholder {
+    color: var(--app-secondary-text);
+
+    opacity: 0.8;
+  }
+}
+
+// ======================================================
+// DIVIDERS
+// ======================================================
+
+.mat-divider {
+  border-top-color: var(--app-border) !important;
+}
+
+// ======================================================
+// CUSTOM FEEDBACK MESSAGES
+// ======================================================
+
+.success {
+  padding: 14px 18px;
+
+  border-radius: 8px;
+
+  background-color: var(--app-success-background);
+
+  color: var(--app-success-text);
+
+  font-weight: 500;
+}
+
+.error {
+  padding: 14px 18px;
+
+  border-radius: 8px;
+
+  background-color: var(--app-error-background);
+
+  color: var(--app-error-text);
+
+  font-weight: 500;
+}
+
+// ======================================================
+// SCROLLBAR - OPTIONAL
+// ======================================================
+
+body.dark-theme {
+  scrollbar-color: #555555 #1e1e1e;
+}
+
+// ======================================================
+// GENERAL LINKS
+// ======================================================
+
+a {
+  color: inherit;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  background-color: var(--app-surface);
+  color: var(--app-text);
+
+  border-bottom: 1px solid var(--app-border);
+}
+
+.app-title {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.active-link {
+  font-weight: 600;
+}

@@ -1,0 +1,146 @@
+<div class="container">
+  <div class="header">
+    <div>
+      <h1>{{ 'PLAN_LIST.TITLE' | translate }}</h1>
+
+      <p>{{ 'PLAN_LIST.SUBTITLE' | translate }}</p>
+    </div>
+
+    <a mat-raised-button routerLink="/plans/new">
+      {{ 'PLAN_LIST.ADD' | translate }}
+    </a>
+  </div>
+
+  @if (loading) {
+    <p>{{ 'PLAN_LIST.LOADING' | translate }}</p>
+  }
+
+  @if (errorMessage) {
+    <p class="error">
+      {{ errorMessage }}
+    </p>
+  }
+
+  @if (!loading && plans.length === 0) {
+    <mat-card>
+      <mat-card-content>
+        {{ 'PLAN_LIST.NO_DATA' | translate }}
+      </mat-card-content>
+    </mat-card>
+  }
+
+  @if (plans.length > 0) {
+    <mat-card>
+      <mat-card-content>
+        <div class="table-wrapper">
+          <table mat-table [dataSource]="plans" class="plans-table">
+
+            <!-- Name -->
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ 'PLAN_LIST.NAME' | translate }}
+              </th>
+
+              <td mat-cell *matCellDef="let plan">
+                <strong>
+                  {{ plan.name }}
+                </strong>
+              </td>
+            </ng-container>
+
+            <!-- Description -->
+
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ 'PLAN_LIST.DESCRIPTION' | translate }}
+              </th>
+
+              <td mat-cell *matCellDef="let plan">
+                {{ plan.description || "-" }}
+              </td>
+            </ng-container>
+
+            <!-- Discount -->
+
+            <ng-container matColumnDef="discount">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ 'PLAN_LIST.DISCOUNT' | translate }}
+              </th>
+
+              <td mat-cell *matCellDef="let plan">
+                {{ plan.discount }}%
+              </td>
+            </ng-container>
+
+            <!-- Status -->
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ 'PLAN_LIST.STATUS' | translate }}
+              </th>
+
+              <td mat-cell *matCellDef="let plan">
+                <span
+                  class="status"
+                  [class.active]="plan.isActive"
+                  [class.inactive]="!plan.isActive"
+                >
+                  {{
+                    plan.isActive
+                      ? ('COMMON.ACTIVE' | translate)
+                      : ('COMMON.INACTIVE' | translate)
+                  }}
+                </span>
+              </td>
+            </ng-container>
+
+            <!-- Pricing tiers -->
+
+            <ng-container matColumnDef="pricingTiers">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ 'PLAN_LIST.PRICING_TIERS' | translate }}
+              </th>
+
+              <td mat-cell *matCellDef="let plan">
+                {{ plan.pricingTiers.length }}
+              </td>
+            </ng-container>
+
+            <!-- Actions -->
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ 'PLAN_LIST.ACTIONS' | translate }}
+              </th>
+
+              <td mat-cell *matCellDef="let plan">
+                <div class="actions">
+                  <a mat-button [routerLink]="['/plans', plan.id]">
+                    {{ 'COMMON.VIEW' | translate }}
+                  </a>
+
+                  <a mat-button [routerLink]="['/plans', plan.id, 'edit']">
+                    {{ 'COMMON.EDIT' | translate }}
+                  </a>
+
+                  <button
+                    mat-button
+                    type="button"
+                    (click)="deletePlan(plan.id, plan.name)"
+                  >
+                    {{ 'COMMON.DELETE' | translate }}
+                  </button>
+                </div>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  }
+</div>

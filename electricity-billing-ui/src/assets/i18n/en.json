@@ -1,0 +1,175 @@
+{
+  "NAV": {
+    "HOME": "Home",
+    "RECOMMENDATION": "Recommendation",
+    "PLANS": "Plans",
+    "TAX_GROUPS": "Tax Groups",
+    "ANALYTICS": "Analytics",
+    "LOGIN": "Login",
+    "LOGOUT": "Logout"
+  },
+  "COMMON": {
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "EDIT": "Edit",
+    "DELETE": "Delete",
+    "BACK": "Back",
+    "LOADING": "Loading...",
+    "ACTIVE": "Active",
+    "INACTIVE": "Inactive",
+    "VIEW": "View"
+  },
+
+  "TAX_GROUP_DETAILS": {
+    "LOADING": "Loading tax group...",
+    "DESCRIPTION": "Description",
+    "VAT": "VAT",
+    "ECO_TAX": "Eco Tax",
+    "STATUS": "Status",
+    "BACK_TO_TAX_GROUPS": "Back to Tax Groups"
+  },
+
+  "TAX_GROUP_FORM": {
+  "EDIT_TITLE": "Edit Tax Group",
+  "ADD_TITLE": "Add Tax Group",
+  "SUBTITLE": "Configure taxes used in electricity cost calculations.",
+  "INFORMATION": "Tax Group Information",
+  "NAME": "Name",
+  "DESCRIPTION": "Description",
+  "VAT": "VAT (%)",
+  "ECO_TAX": "Eco Tax (%)",
+  "NAME_REQUIRED": "Name is required.",
+  "VAT_ERROR": "VAT must be between 0 and 1.",
+  "ECO_TAX_ERROR": "Eco Tax must be between 0 and 1.",
+  "SAVE_CHANGES": "Save Changes",
+  "CREATE": "Create Tax Group"
+},
+
+"TAX_GROUP_LIST": {
+  "TITLE": "Tax Groups",
+  "SUBTITLE": "Manage tax rules used in electricity cost calculations.",
+  "ADD": "Add Tax Group",
+  "LOADING": "Loading tax groups...",
+  "NO_DATA": "No tax groups found.",
+  "NAME": "Name",
+  "DESCRIPTION": "Description",
+  "VAT": "VAT",
+  "ECO_TAX": "Eco Tax",
+  "STATUS": "Status",
+  "ACTIONS": "Actions"
+},
+
+"RECOMMENDATION_PAGE": {
+  "TITLE": "Electricity Plan Recommendation",
+  "SUBTITLE": "Enter your monthly consumption and select a tax group to find the most affordable electricity plan.",
+  "CALCULATE_TITLE": "Calculate Recommendation",
+  "MONTHLY_CONSUMPTION": "Monthly Consumption",
+  "CONSUMPTION_ERROR": "Enter a valid monthly consumption.",
+  "TAX_GROUP": "Tax Group",
+  "TAX_GROUP_REQUIRED": "Tax group is required.",
+  "SEND_EMAIL": "Send recommendation to my email",
+  "EMAIL_ADDRESS": "Email address",
+  "EMAIL_REQUIRED": "Email address is required.",
+  "EMAIL_INVALID": "Enter a valid email address.",
+  "CALCULATING": "Calculating...",
+  "FIND_BEST_PLAN": "Find Best Plan",
+  "RECOMMENDED_PLAN": "Recommended Plan",
+  "RECOMMENDED_PLAN_SUBTITLE": "The most affordable plan based on the entered consumption.",
+  "RECOMMENDED": "Recommended",
+  "BEST_COST_TEXT": "Best estimated monthly cost for your usage.",
+  "BAM_PER_MONTH": "BAM / month",
+  "PLAN_COMPARISON": "Plan Comparison",
+  "PLAN_COMPARISON_SUBTITLE": "Compare the estimated cost for all available plans.",
+  "PLAN": "Plan",
+  "BASE_COST": "Base Cost",
+  "DISCOUNT": "Discount",
+  "VAT": "VAT",
+  "ECO_TAX": "Eco Tax",
+  "TOTAL": "Total"
+},
+"PLAN_FORM": {
+  "EDIT_TITLE": "Edit Plan",
+  "ADD_TITLE": "Add Plan",
+  "SUBTITLE": "Configure the electricity plan and its pricing tiers.",
+  "GENERAL_INFORMATION": "General Information",
+  "NAME": "Name",
+  "NAME_REQUIRED": "Name is required.",
+  "DISCOUNT": "Discount (%)",
+  "DISCOUNT_ERROR": "Discount must be between 0 and 100.",
+  "DESCRIPTION": "Description",
+  "PRICING_TIERS": "Pricing Tiers",
+  "PRICING_TIERS_SUBTITLE": "Define consumption thresholds and price per kWh.",
+  "ADD_TIER": "Add Tier",
+  "TIER": "Tier",
+  "THRESHOLD": "Threshold",
+  "THRESHOLD_HINT": "Empty means no upper limit.",
+  "PRICE_PER_KWH": "Price per kWh",
+  "PRICE_REQUIRED": "Valid price is required.",
+  "SORT_ORDER": "Sort Order",
+  "SORT_ORDER_ERROR": "Sort order must be at least 1.",
+  "REMOVE_TIER": "Remove Tier",
+  "SAVE_CHANGES": "Save Changes",
+  "CREATE_PLAN": "Create Plan"
+},
+
+"PLAN_LIST": {
+  "TITLE": "Electricity Plans",
+  "SUBTITLE": "Manage electricity plans and pricing tiers.",
+  "ADD": "Add Plan",
+  "LOADING": "Loading plans...",
+  "NO_DATA": "No plans found.",
+  "NAME": "Name",
+  "DESCRIPTION": "Description",
+  "DISCOUNT": "Discount",
+  "STATUS": "Status",
+  "PRICING_TIERS": "Pricing Tiers",
+  "ACTIONS": "Actions"
+},
+
+  "PLAN": {
+    "TITLE": "Plans",
+    "NAME": "Plan name",
+    "DESCRIPTION": "Description",
+    "DISCOUNT": "Discount",
+    "PRICE_PER_KWH": "Price per kWh",
+    "ACTIVE": "Active"
+  },
+
+  "RECOMMENDATION": {
+    "TITLE": "Find the best electricity plan",
+    "CONSUMPTION": "Monthly consumption (kWh)",
+    "TAX_GROUP": "Tax group",
+    "EMAIL": "Email",
+    "SEND_EMAIL": "Send recommendation by email",
+    "CALCULATE": "Calculate recommendation",
+    "RECOMMENDED_PLAN": "Recommended plan",
+    "TOTAL_COST": "Total cost"
+  },
+
+  "LOGIN_PAGE": {
+  "TITLE": "Administrator Login",
+  "SUBTITLE": "Electricity Billing System",
+  "USERNAME": "Username",
+  "PASSWORD": "Password",
+  "LOGIN": "Login"
+},
+
+  "DASHBOARD": {
+    "TITLE": "Analytics Dashboard",
+    "SUBTITLE": "Overview of electricity plan recommendations",
+    "LOADING": "Loading analytics...",
+    "TOTAL_RECOMMENDATIONS": "Total Recommendations",
+    "AVERAGE_CONSUMPTION": "Average Consumption",
+    "AVERAGE_ESTIMATED_COST": "Average Estimated Cost",
+    "NO_DATA": "No recommendation data is available yet.",
+    "PLAN_SELECTION_TRENDS": "Plan Selection Trends",
+    "PLAN_SELECTION_TRENDS_SUBTITLE": "Number of times each plan was recommended",
+    "PLAN_STATISTICS": "Plan Statistics",
+    "PLAN": "Plan",
+    "RECOMMENDATIONS": "Recommendations",
+    "PERCENTAGE": "Percentage",
+    "PLANS": "Plans",
+    "NUMBER_OF_RECOMMENDATIONS": "Number of recommendations",
+    "LOAD_ERROR": "Analytics data could not be loaded."
+  }
+}

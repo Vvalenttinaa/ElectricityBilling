@@ -1,0 +1,302 @@
+<div class="container">
+  <div class="page-header">
+    <h1>{{ 'RECOMMENDATION_PAGE.TITLE' | translate }}</h1>
+
+    <p>
+      {{ 'RECOMMENDATION_PAGE.SUBTITLE' | translate }}
+    </p>
+  </div>
+
+  @if (errorMessage) {
+    <p class="error">
+      {{ errorMessage }}
+    </p>
+  }
+
+  @if (emailSentMessage) {
+    <p class="success">
+      {{ emailSentMessage }}
+    </p>
+  }
+
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title>
+        {{ 'RECOMMENDATION_PAGE.CALCULATE_TITLE' | translate }}
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="recommendationForm" (ngSubmit)="calculate()">
+        <div class="form-grid">
+          <!-- MONTHLY CONSUMPTION -->
+
+          <mat-form-field appearance="outline">
+            <mat-label>
+              {{ 'RECOMMENDATION_PAGE.MONTHLY_CONSUMPTION' | translate }}
+            </mat-label>
+
+            <input
+              matInput
+              type="number"
+              min="0"
+              step="1"
+              formControlName="monthlyConsumption"
+            />
+
+            <span matTextSuffix>kWh</span>
+
+            @if (
+              recommendationForm.get("monthlyConsumption")?.touched &&
+              recommendationForm.get("monthlyConsumption")?.invalid
+            ) {
+              <mat-error>
+                {{ 'RECOMMENDATION_PAGE.CONSUMPTION_ERROR' | translate }}
+              </mat-error>
+            }
+          </mat-form-field>
+
+          <!-- TAX GROUP -->
+
+          <mat-form-field appearance="outline">
+            <mat-label>
+              {{ 'RECOMMENDATION_PAGE.TAX_GROUP' | translate }}
+            </mat-label>
+
+            <mat-select formControlName="taxGroupId">
+              @for (taxGroup of taxGroups; track taxGroup.id) {
+                <mat-option [value]="taxGroup.id">
+                  {{ taxGroup.name }}
+                </mat-option>
+              }
+            </mat-select>
+
+            @if (
+              recommendationForm.get("taxGroupId")?.touched &&
+              recommendationForm.get("taxGroupId")?.invalid
+            ) {
+              <mat-error>
+                {{ 'RECOMMENDATION_PAGE.TAX_GROUP_REQUIRED' | translate }}
+              </mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+        <!-- SEND EMAIL OPTION -->
+
+        <div class="email-section">
+          <mat-checkbox formControlName="sendEmail">
+            {{ 'RECOMMENDATION_PAGE.SEND_EMAIL' | translate }}
+          </mat-checkbox>
+
+          @if (recommendationForm.get("sendEmail")?.value) {
+            <mat-form-field appearance="outline" class="email-field">
+              <mat-label>
+                {{ 'RECOMMENDATION_PAGE.EMAIL_ADDRESS' | translate }}
+              </mat-label>
+
+              <input
+                matInput
+                type="email"
+                formControlName="email"
+                placeholder="example@gmail.com"
+              />
+
+              @if (recommendationForm.get("email")?.hasError("required")) {
+                <mat-error>
+                  {{ 'RECOMMENDATION_PAGE.EMAIL_REQUIRED' | translate }}
+                </mat-error>
+              }
+
+              @if (recommendationForm.get("email")?.hasError("email")) {
+                <mat-error>
+                  {{ 'RECOMMENDATION_PAGE.EMAIL_INVALID' | translate }}
+                </mat-error>
+              }
+            </mat-form-field>
+          }
+        </div>
+
+        <!-- BUTTON -->
+
+        <div class="form-actions">
+          <button
+            mat-raised-button
+            type="submit"
+            [disabled]="loading || loadingTaxGroups"
+          >
+            @if (loading) {
+              {{ 'RECOMMENDATION_PAGE.CALCULATING' | translate }}
+            } @else {
+              {{ 'RECOMMENDATION_PAGE.FIND_BEST_PLAN' | translate }}
+            }
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  @if (result) {
+    <mat-divider></mat-divider>
+
+    <!-- RECOMMENDED PLAN -->
+
+    <section class="result-section">
+      <div class="section-header">
+        <h2>{{ 'RECOMMENDATION_PAGE.RECOMMENDED_PLAN' | translate }}</h2>
+
+        <p>
+          {{ 'RECOMMENDATION_PAGE.RECOMMENDED_PLAN_SUBTITLE' | translate }}
+        </p>
+      </div>
+
+      <mat-card class="recommended-card">
+        <mat-card-content>
+          <div class="recommended-content">
+            <div>
+              <span class="label">
+                {{ 'RECOMMENDATION_PAGE.RECOMMENDED' | translate }}
+              </span>
+
+              <h2>
+                {{ result.recommendedPlan.planName }}
+              </h2>
+
+              <p>
+                {{ 'RECOMMENDATION_PAGE.BEST_COST_TEXT' | translate }}
+              </p>
+            </div>
+
+            <div class="recommended-price">
+              <span class="amount">
+                {{ result.recommendedPlan.totalCost | number: "1.2-2" }}
+              </span>
+
+              <span class="currency">
+                {{ 'RECOMMENDATION_PAGE.BAM_PER_MONTH' | translate }}
+              </span>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </section>
+
+    <!-- PLAN COMPARISON -->
+
+    <section class="comparison-section">
+      <div class="section-header">
+        <h2>{{ 'RECOMMENDATION_PAGE.PLAN_COMPARISON' | translate }}</h2>
+
+        <p>
+          {{ 'RECOMMENDATION_PAGE.PLAN_COMPARISON_SUBTITLE' | translate }}
+        </p>
+      </div>
+
+      <mat-card>
+        <mat-card-content>
+          <div class="table-wrapper">
+            <table
+              mat-table
+              [dataSource]="result.allPlans"
+              class="comparison-table"
+            >
+              <!-- PLAN NAME -->
+
+              <ng-container matColumnDef="planName">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ 'RECOMMENDATION_PAGE.PLAN' | translate }}
+                </th>
+
+                <td mat-cell *matCellDef="let plan">
+                  <div class="plan-name">
+                    <strong>
+                      {{ plan.planName }}
+                    </strong>
+
+                    @if (plan.planId === result.recommendedPlan.planId) {
+                      <span class="recommended-badge">
+                        {{ 'RECOMMENDATION_PAGE.RECOMMENDED' | translate }}
+                      </span>
+                    }
+                  </div>
+                </td>
+              </ng-container>
+
+              <!-- BASE COST -->
+
+              <ng-container matColumnDef="baseCost">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ 'RECOMMENDATION_PAGE.BASE_COST' | translate }}
+                </th>
+
+                <td mat-cell *matCellDef="let plan">
+                  {{ plan.baseCost | number: "1.2-2" }}
+                </td>
+              </ng-container>
+
+              <!-- DISCOUNT -->
+
+              <ng-container matColumnDef="discount">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ 'RECOMMENDATION_PAGE.DISCOUNT' | translate }}
+                </th>
+
+                <td mat-cell *matCellDef="let plan">
+                  {{ plan.discountAmount | number: "1.2-2" }}
+                </td>
+              </ng-container>
+
+              <!-- VAT -->
+
+              <ng-container matColumnDef="vat">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ 'RECOMMENDATION_PAGE.VAT' | translate }}
+                </th>
+
+                <td mat-cell *matCellDef="let plan">
+                  {{ plan.vatAmount | number: "1.2-2" }}
+                </td>
+              </ng-container>
+
+              <!-- ECO TAX -->
+
+              <ng-container matColumnDef="ecoTax">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ 'RECOMMENDATION_PAGE.ECO_TAX' | translate }}
+                </th>
+
+                <td mat-cell *matCellDef="let plan">
+                  {{ plan.ecoTaxAmount | number: "1.2-2" }}
+                </td>
+              </ng-container>
+
+              <!-- TOTAL -->
+
+              <ng-container matColumnDef="total">
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ 'RECOMMENDATION_PAGE.TOTAL' | translate }}
+                </th>
+
+                <td mat-cell *matCellDef="let plan">
+                  <strong>
+                    {{ plan.totalCost | number: "1.2-2" }}
+                  </strong>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+              <tr
+                mat-row
+                *matRowDef="let row; columns: displayedColumns"
+                [class.recommended-row]="
+                  row.planId === result.recommendedPlan.planId
+                "
+              ></tr>
+            </table>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </section>
+  }
+</div>
